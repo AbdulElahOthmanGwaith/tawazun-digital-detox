@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توازن | رحلة نحو الوعي الرقمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0D9488;
+            --primary-dark: #0F766E;
+            --secondary: #1E293B;
+            --background: #F8FAFC;
+            --accent: #F59E0B;
+            --danger: #EF4444;
+            --text: #334155;
+            --text-light: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #F0FDFA 0%, #F8FAFC 100%);
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(13,148,136,0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: var(--secondary);
+        }
+
+        .stats .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-family: 'Cairo', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Social Cards */
+        .social-cards {
+            background: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--background);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-platform {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+        }
+
+        .story-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .timeline-chapter {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Scientific Section */
+        .scientific {
+            background: white;
+        }
+
+        .science-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .science-image img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .fact-box {
+            background: var(--background);
+            border-right: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .fact-number {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Long Article */
+        .article-section {
+            background: var(--background);
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .article-content h3 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Motivation Section */
+        .motivation {
+            background: linear-gradient(135deg, var(--secondary) 0%, #0F172A 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .motivation h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .motivation p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .motivation .btn {
+            background: var(--accent);
+        }
+
+        .motivation .btn:hover {
+            background: #D97706;
+        }
+
+        blockquote {
+            font-size: 1.5rem;
+            font-style: italic;
+            border-right: 4px solid var(--accent);
+            padding-right: 2rem;
+            margin: 2rem 0;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Gallery */
+        .gallery {
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .stats .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .science-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .motivation h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">توازن</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#social">المنشورات</a></li>
+                <li><a href="#story">قصة أحمد</a></li>
+                <li><a href="#science">الدراسات</a></li>
+                <li><a href="#article">المقال</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>هل تمتلك <span>هاتفك</span>؟<br>أم هو من <span>يمتلكك</span>؟</h1>
+                <p>الهاتف أصبح بوابة نحو الإدمان. إذا تركته بدون تحكم، سيتحكم هو في مسار حياتك نحو الأسوأ.</p>
+                <a href="#social" class="btn">اكتشف المزيد</a>
+            </div>
+            <div class="hero-image">
+                <img src="imgs/smartphone-addiction-whirlpool-illustration.jpg" alt="إدمان الهاتف">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">ساعات يومياً على الهاتف</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2600</div>
+                <div class="stat-label">مرة نلمس الهاتف يومياً</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">76</div>
+                <div class="stat-label">يوماً ضائعاً سنوياً</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">66%</div>
+                <div class="stat-label">يعانون من نوموفوبيا</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Cards -->
+    <section class="social-cards" id="social">
+        <div class="container">
+            <h2 class="section-title">منشورات للتواصل الاجتماعي</h2>
+            <p class="section-subtitle">شارك هذه الرسائل لتوعية من حولك</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-platform">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        تويتر
+                    </div>
+                    <div class="card-content">
+                        هاتفك إما أداة تبنيك أو سجن يحبسك. القرار قرارك.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-platform">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        تويتر
+                    </div>
+                    <div class="card-content">
+                        5 ساعات يومياً على الهاتف = 76 يوماً في السنة ضائعة. فكّر فيها.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-platform">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+                        انستغرام
+                    </div>
+                    <div class="card-content">
+                        📱 هاتفك مرآة لحياتك<br><br>
+                        ✅ تعلم ✅ إنتاج ✅ تطوير → أنت على الطريق الصحيح<br><br>
+                        ❌ تصفح لا نهائي ❌ إدمان → حان وقت التغيير
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-platform">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        فيسبوك
+                    </div>
+                    <div class="card-content">
+                        الهاتف أصبح بوابة نحو الإدمان 📱<br><br>
+                        الحل؟ بسيط لكنه يحتاج إرادة:<br>
+                        • حدد أوقات الاستخدام<br>
+                        • احذف التطبيقات المضيعة<br>
+                        • لا تنم وهاتفك بجانبك
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="container">
+            <h2 class="section-title">قصة أحمد: 1000 يوم ضائعة</h2>
+            <p class="section-subtitle">رحلة من الإدمان إلى التحرر</p>
+            
+            <div class="story-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-chapter">الفصل الأول</div>
+                    <h3 class="timeline-title">السقوط</h3>
+                    <p>أحمد شاب طموح في الخامسة والعشرين. لديه أحلام كبيرة: يريد تعلم البرمجة، بناء مشروعه الخاص، السفر حول العالم.</p>
+                    <p>لكن كل مساء، يجلس على سريره "ليستريح قليلاً" قبل أن يبدأ العمل على أحلامه. يفتح هاتفه... وتمر الساعات. "خمس دقائق فقط" تتحول إلى ثلاث ساعات.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-chapter">الفصل الثاني</div>
+                    <h3 class="timeline-title">الصدمة</h3>
+                    <p>بعد ثلاث سنوات، جلس أحمد يحسب: 5 ساعات يومياً × 365 يوماً × 3 سنوات = <strong>5,475 ساعة</strong></p>
+                    <p>أي ما يعادل <strong>228 يوماً كاملاً</strong>... ضائعة في العدم. في تلك اللحظة، بكى أحمد. ليس حزناً، بل غضباً من نفسه.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-chapter">الفصل الثالث</div>
+                    <h3 class="timeline-title">القرار</h3>
+                    <p>في اليوم التالي، فعل أحمد شيئاً جنونياً: حذف كل تطبيقات التواصل الاجتماعي.</p>
+                    <p>الأيام الأولى كانت جحيماً. يده تتجه للهاتف تلقائياً، يشعر بفراغ غريب. لكنه صمد.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-chapter">الفصل الرابع</div>
+                    <h3 class="timeline-title">ولادة جديدة</h3>
+                    <p>بعد سنة، أطلق أحمد تطبيقه الأول. بعد سنتين، ترك وظيفته وأصبح يعمل لحسابه الخاص.</p>
+                    <p>اليوم يقول: <em>"لم أتخلص من هاتفي. تخلصت من نسخة مني كانت تستخدم الهاتف للهروب من الحياة."</em></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Section -->
+    <section class="scientific" id="science">
+        <div class="container">
+            <h2 class="section-title">ماذا يقول العلم؟</h2>
+            <p class="section-subtitle">حقائق علمية مثبتة عن إدمان الهاتف</p>
+            
+            <div class="science-grid">
+                <div class="science-content">
+                    <div class="fact-box">
+                        <div class="fact-number">6 ساعات</div>
+                        <p>متوسط الوقت اليومي على الشاشات عالمياً</p>
+                    </div>
+                    <div class="fact-box">
+                        <div class="fact-number">70%</div>
+                        <p>زيادة في أعراض القلق بسبب السوشيال ميديا</p>
+                    </div>
+                    <div class="fact-box">
+                        <div class="fact-number">23 دقيقة</div>
+                        <p>الوقت المطلوب لاستعادة التركيز بعد كل مقاطعة</p>
+                    </div>
+                    <div class="fact-box">
+                        <div class="fact-number">60 دقيقة</div>
+                        <p>تأخر النوم بسبب الضوء الأزرق</p>
+                    </div>
+                </div>
+                <div class="science-image">
+                    <img src="imgs/social-media-addiction-drowning-art.jpg" alt="إدمان السوشيال ميديا">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">صور توعوية</h2>
+            <p class="section-subtitle">صور تعبر عن واقع إدمان الهواتف</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="imgs/digital-detox-breaking-chains-illustration.jpg" alt="التحرر الرقمي">
+                </div>
+                <div class="gallery-item">
+                    <img src="imgs/digital-detox-breaking-phone-chains-illustration.jpg" alt="كسر القيود">
+                </div>
+                <div class="gallery-item">
+                    <img src="imgs/mindfulness-meditation-ignoring-technology-distractions.jpg" alt="التأمل والهدوء">
+                </div>
+                <div class="gallery-item">
+                    <img src="imgs/online_vs_offline_social_media_addiction_illustration.jpg" alt="الواقع مقابل الافتراضي">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Long Article -->
+    <section class="article-section" id="article">
+        <div class="container">
+            <h2 class="section-title">المقال الكامل</h2>
+            <p class="section-subtitle">الهاتف الذكي: كيف تحول من نعمة إلى نقمة؟</p>
+            
+            <div class="article-content">
+                <h3>المقدمة</h3>
+                <p>قبل عقدين فقط، كان الهاتف مجرد أداة للاتصال. اليوم، أصبح امتداداً لأجسادنا. نستيقظ عليه، ننام معه، ونقضي معه ساعات أكثر مما نقضيها مع أقرب الناس إلينا.</p>
+
+                <h3>كيف وصلنا إلى هنا؟</h3>
+                <p>الشركات التقنية الكبرى توظف علماء نفس وخبراء سلوك لتصميم تطبيقات تستغل نقاط ضعفنا البشرية:</p>
+                <ul>
+                    <li><strong>اللون الأحمر للإشعارات:</strong> يثير الانتباه والقلق</li>
+                    <li><strong>التمرير اللانهائي:</strong> يلغي نقطة التوقف الطبيعية</li>
+                    <li><strong>الإعجابات والتعليقات:</strong> تفرز الدوبامين في دماغك</li>
+                    <li><strong>الخوارزميات:</strong> تعرف ما يجذبك وتقدمه لك باستمرار</li>
+                </ul>
+
+                <h3>الثمن الذي ندفعه</h3>
+                <p><strong>على مستوى الصحة النفسية:</strong> ارتفاع معدلات القلق والاكتئاب، الشعور المستمر بعدم الكفاية، فقدان القدرة على الاستمتاع باللحظة الحاضرة.</p>
+                <p><strong>على مستوى العلاقات:</strong> حضور جسدي وغياب ذهني، أطفال يكبرون أمام آباء منشغلين بالشاشات.</p>
+                <p><strong>على مستوى الإنجاز:</strong> أحلام مؤجلة إلى ما لا نهاية، طاقة إبداعية تُستنزف في التصفح.</p>
+
+                <h3>طريق التحرر</h3>
+                <p><strong>المرحلة الأولى - الوعي:</strong> راقب استخدامك بدقة، سجّل مشاعرك عند استخدام الهاتف.</p>
+                <p><strong>المرحلة الثانية - التطهير:</strong> احذف التطبيقات السامة، أغلق الإشعارات غير الضرورية.</p>
+                <p><strong>المرحلة الثالثة - إعادة البناء:</strong> املأ الفراغ بأنشطة ذات معنى، أعد بناء عادات صحية.</p>
+
+                <h3>الخاتمة</h3>
+                <p>الهاتف أداة رائعة حين تتحكم فيه. لكنه سجن مريح حين يتحكم فيك. الفرق بين الحالتين هو قرار تتخذه كل يوم، بل كل لحظة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivation Section -->
+    <section class="motivation">
+        <div class="container">
+            <h2>استيقظ! حياتك تُسرق منك</h2>
+            <p>أنت لست ضعيفاً. أنت إنسان طبيعي يواجه آلة صُممت خصيصاً لاستعبادك. لكن هذا ينتهي اليوم.</p>
+            
+            <blockquote>
+                "بعد سنة من الآن، ستنظر للوراء. إما أن تقول: ليتني بدأت قبل سنة. أو: الحمد لله أنني بدأت قبل سنة."
+            </blockquote>
+            
+            <p>القرار قرارك. والوقت يمضي.</p>
+            <a href="#" class="btn" onclick="alert('ابدأ الآن! أغلق هاتفك وافعل شيئاً حقيقياً.'); return false;">قبلت التحدي</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 1rem;">توازن</div>
+            <p>رحلة نحو الوعي الرقمي | جميع الحقوق محفوظة 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .timeline-item, .fact-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
